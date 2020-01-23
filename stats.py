@@ -20,7 +20,7 @@ for nm in sorted(f, key=lambda a : int(a.split('_')[-1])):
   entry += "|"
   print(entry)
 
-print("## Statistics on clock ")
+print("## Statistics on iterations ")
 print("| Input | Mean | Std | Median | Min | Max |")
 print("| -----: | -----:| ----: |  -----: | -----: | -----: |")
 for nm in sorted(f, key=lambda a : int(a.split('_')[-1])):
