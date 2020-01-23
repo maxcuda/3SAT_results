@@ -3,7 +3,9 @@ import numpy as np
 f=os.listdir("n256")
 #print(f) 
 os.chdir('n256')
+
 print("# 3SAT_results")
+print("## Statistics on time ")
 print("| Input | Mean | Std | Median | Min | Max | Total time (m)|")
 print("| -----: | -----:| ----: |  -----: | -----: | -----: | ----: |")
 for nm in sorted(f, key=lambda a : int(a.split('_')[-1])):
@@ -15,5 +17,18 @@ for nm in sorted(f, key=lambda a : int(a.split('_')[-1])):
   entry = "| "+str(idx)
   for v in vals:
     entry += " | {:10.3f} ".format(v)
+  entry += "|"
+  print(entry)
+
+print("## Statistics on clock ")
+print("| Input | Mean | Std | Median | Min | Max |")
+print("| -----: | -----:| ----: |  -----: | -----: | -----: |")
+for nm in sorted(f, key=lambda a : int(a.split('_')[-1])):
+  it = np.loadtxt(nm, comments=None, usecols=(4),converters={4: lambda s: int(s[6:])},unpack=True)
+  idx = int(nm.split('_')[-1])
+  vals = [ it.mean(), it.std(), np.median(it), it.min(), it.max()]
+  entry = "| "+str(idx)
+  for v in vals:
+    entry += " | {:10.0f} ".format(v)
   entry += "|"
   print(entry)
